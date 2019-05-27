@@ -1,0 +1,1 @@
+5.27,终于把数据库新建了，原因是sequelize自带了creatAT等，不需要再db.js里面新增creatAT了，于是把他删掉了。
