@@ -1,7 +1,7 @@
 //jshint esversion:8
 const fs = require('fs');
 const db = require('./db');
-
+const Sequelize = require('sequelize');
 let files = fs.readdirSync(__dirname + '/models');
 
 let js_files = files.filter((f)=>{

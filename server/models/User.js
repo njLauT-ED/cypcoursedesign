@@ -8,5 +8,13 @@ module.exports = db.defineModel('users', {
     },
     passwd: db.STRING(100),
     nickname: db.STRING(100),
-    gender: db.BOOLEAN
+    gender: db.BOOLEAN,
+    describe:{
+        type:db.TEXT,
+        allowNull:true,
+    },
+    age:{
+        type:db.INTEGER,
+        allowNull:true
+    }
 });

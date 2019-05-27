@@ -41,18 +41,6 @@ function defineModel(name, attributes) {
         type: ID_TYPE,
         primaryKey: true
     };
-    attrs.createdAt = {
-        type: Sequelize.BIGINT,
-        allowNull: false
-    };
-    attrs.updatedAt = {
-        type: Sequelize.BIGINT,
-        allowNull: false
-    };
-    attrs.version = {
-        type: Sequelize.BIGINT,
-        allowNull: false
-    };
     console.log('model defined for table: ' + name + '\n' + JSON.stringify(attrs, function (k, v) {
         if (k === 'type') {
             for (let key in Sequelize) {
@@ -77,25 +65,7 @@ function defineModel(name, attributes) {
     }, '  '));
     return sequelize.define(name, attrs, {
         tableName: name,
-        timestamps: false,
-        hooks: {
-            beforeValidate: function (obj) {
-                let now = Date.now();
-                if (obj.isNewRecord) {
-                    console.log('will create entity...' + obj);
-                    if (!obj.id) {
-                        obj.id = generateId();
-                    }
-                    obj.createdAt = now;
-                    obj.updatedAt = now;
-                    obj.version = 0;
-                } else {
-                    console.log('will update entity...');
-                    obj.updatedAt = now;
-                    obj.version++;
-                }
-            }
-        }
+        timestamps: false
     });
 }
 
