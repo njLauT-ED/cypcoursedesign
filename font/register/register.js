@@ -15,23 +15,25 @@ vm = new Vue({
         right :false
     },
     watch: {
-        passwd: function (newpwd, oldpwd) {
+        passwd: async function (newpwd, oldpwd) {
             const pwd = /^[a-zA-Z0-9]{6,14}$/;
-            console.log(pwd.test(newpwd));
-            right = pwd.test(newpwd);
-            if (right == true) {
+            right = await pwd.test(newpwd);
+            if (right === true) {
                 this.passwdps = '密码符合规范';
+                
                 if (this.passwd == this.passwd2) {
                     this.passwd2ps = '两次输入一致';
                 }else{
                     this.passwd2ps = '两次输入不一致';
                 }
             } else {
-                const badLength = /[a-zA-Z0-9]*/;
-                if (badLength.test(newpwd)) {
-                    passwdps = '密码长度应该在6-14位';
-                }else{
-                    passwdps = '密码仅由大小写字母和数字组成';
+                const badLength = /^[a-zA-Z0-9]*$/;
+                var flag = await badLength.test(newpwd);
+                if (flag === true) {
+                    this.passwdps = '密码长度应该在6-14位';
+                } 
+                if (flag === false){
+                    this.passwdps = '密码仅由大小写字母和数字组成';
                 }
             }
         },
@@ -45,7 +47,7 @@ vm = new Vue({
     },
     methods: {
         submit: function () {
-            ;
+            
         }
     },
 });
