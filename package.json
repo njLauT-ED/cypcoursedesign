@@ -6,7 +6,7 @@
   "dependencies": {
     "mysql2": "^1.6.5",
     "node-uuid": "^1.4.8",
-    "sequelize": "^5.8.6",
+    "sequelize": "^5.15.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {},
